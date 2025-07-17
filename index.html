@@ -4,39 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyel Gaming</title>
+
+  <!-- Orbitron font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-color: #0f0f0f;
       --text-color: #ffffff;
       --accent-color: #00ffcc;
+      --accent-color-dark: #00b399;
       --card-bg: #1f1f1f;
+      --gradient-start: #00ffcc;
+      --gradient-end: #007766;
     }
 
     body.light-mode {
       --bg-color: #ffffff;
       --text-color: #000000;
       --accent-color: #007777;
+      --accent-color-dark: #005454;
       --card-bg: #f0f0f0;
+      --gradient-start: #007777;
+      --gradient-end: #004c4c;
     }
 
+    /* Global styles */
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
     header {
-      background-color: #1a1a1a;
+      background-color: var(--card-bg);
       padding: 20px;
       text-align: center;
+      position: relative;
+      /* gradient border bottom */
+      border-bottom: 4px solid;
+      border-image-slice: 1;
+      border-width: 0 0 4px 0;
+      border-image-source: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+
+    /* Custom logo */
+    .logo {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 4px;
+      user-select: none;
+      margin: 0 auto 5px;
+      max-width: 300px;
+    }
+
+    header p {
+      margin: 0 0 10px;
+      font-weight: 500;
       color: var(--accent-color);
     }
+
     nav {
       text-align: center;
       margin: 20px 0;
@@ -45,7 +77,15 @@
       color: var(--accent-color);
       margin: 0 15px;
       text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
     }
+    nav a:hover,
+    nav a:focus {
+      color: var(--accent-color-dark);
+      outline: none;
+    }
+
     .toggle-btn {
       background: var(--accent-color);
       border: none;
@@ -54,34 +94,52 @@
       cursor: pointer;
       font-weight: bold;
       margin-top: 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
+    .toggle-btn:hover,
+    .toggle-btn:focus {
+      background: var(--accent-color-dark);
+      outline: none;
+    }
+
+    /* Hero with parallax effect */
     .hero {
       position: relative;
       text-align: center;
-      padding: 100px 20px;
+      padding: 120px 20px 140px;
       background-image: url('https://wallpaperaccess.com/full/6320617.jpg');
+      background-attachment: fixed;
       background-size: cover;
       background-position: center;
+      color: #fff;
+      overflow: hidden;
     }
     .hero::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1;
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .hero h2 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       margin-bottom: 10px;
       color: var(--accent-color);
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
     }
+
     .section {
       padding: 40px 20px;
       max-width: 900px;
@@ -90,18 +148,30 @@
     .section h3 {
       color: var(--accent-color);
       margin-bottom: 15px;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
     .section ul {
       list-style-type: square;
       padding-left: 20px;
     }
+
     .card {
       background-color: var(--card-bg);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,255,204,0.1);
+      box-shadow: 0 0 12px rgba(0,255,204,0.15);
+      transition: box-shadow 0.3s ease;
     }
+    .card:hover {
+      box-shadow: 0 0 18px rgba(0,255,204,0.35);
+    }
+
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -111,62 +181,218 @@
       width: 100%;
       border-radius: 10px;
       border: 2px solid var(--accent-color);
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
+    .gallery img:hover,
+    .gallery img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Social links */
     .socials a {
       color: var(--accent-color);
       margin: 0 10px;
       text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
     }
+    .socials a:hover,
+    .socials a:focus {
+      color: var(--accent-color-dark);
+      outline: none;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #1a1a1a;
+      background-color: var(--card-bg);
       font-size: 0.9rem;
       color: #888;
+      user-select: none;
+    }
+
+    /* Leaderboard table */
+    table {
+      width: 100%;
+      color: var(--text-color);
+      border-collapse: collapse;
+    }
+    thead tr {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--accent-color);
+    }
+    tbody tr:hover {
+      background-color: var(--accent-color-dark);
+    }
+
+    /* Contact form */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    /* Player Spotlight Section */
+    #spotlight {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      padding: 40px 20px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    #spotlight h3 {
+      border-left-color: #fff;
+      color: #fff;
+    }
+    #spotlight .spotlight-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .spotlight-card {
+      background-color: rgba(0,0,0,0.35);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.15);
+      transition: transform 0.3s;
+    }
+    .spotlight-card:hover {
+      transform: scale(1.05);
+    }
+    .spotlight-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-color);
+      margin-bottom: 12px;
+    }
+    .spotlight-card h4 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .spotlight-card p {
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    /* Blog section styling */
+    #blog .card h4 {
+      color: var(--accent-color);
+    }
+    #blog .card a {
+      color: var(--accent-color);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    #blog .card a:hover,
+    #blog .card a:focus {
+      text-decoration: underline;
+    }
+
+    /* Merch placeholder */
+    #merch {
+      background-color: var(--card-bg);
+      border: 2px dashed var(--accent-color);
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 12px;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      user-select: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      header {
+        padding: 15px;
+      }
+      nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+      }
+      .hero {
+        padding: 90px 15px 110px;
+      }
+      .hero h2 {
+        font-size: 2.3rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 30px 15px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Nyel Gaming</h1>
+    <div class="logo" aria-label="Nyel Gaming Logo">Nyel Gaming</div>
     <p>Your daily dose of clutch plays, CODM tips, and raw gaming energy.</p>
-    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    <button class="toggle-btn" aria-pressed="false" onclick="toggleMode()" id="toggleModeBtn">Toggle Dark/Light Mode</button>
   </header>
 
-  <nav>
+  <nav aria-label="Primary navigation">
     <a href="#about">About</a>
     <a href="#videos">Videos</a>
     <a href="#loadouts">Loadouts</a>
     <a href="#achievements">Achievements</a>
-    <a href="#trophies">Trophies</a>
     <a href="#gallery">Gallery</a>
     <a href="#schedule">Schedule</a>
     <a href="#tips">Tips</a>
     <a href="#socials">Socials</a>
+    <a href="#blog">Blog</a>
+    <a href="#spotlight">Player Spotlight</a>
+    <a href="#merch">Merch</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <section class="hero">
+  <section class="hero" role="banner" aria-label="Hero section with Nyel Gaming slogan">
     <div class="hero-content">
       <h2>Stream. Slay. Flex.</h2>
       <p>Join Nyel in legendary CODM gameplay</p>
     </div>
   </section>
 
-  <section id="about" class="section">
+  <section id="about" class="section" tabindex="-1">
     <h3>About Me</h3>
     <div class="card">
       <p>I'm Nyel, a passionate Filipino gamer and sniper main in Call of Duty: Mobile. I've hit Legendary in MP 6 times and BR 13 times! I play using 4 fingers for better agility and accuracy — especially with sniping. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
     </div>
   </section>
 
-  <section id="videos" class="section">
+  <section id="videos" class="section" tabindex="-1">
     <h3>Featured Videos</h3>
     <div class="card">
-      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" frameborder="0" allowfullscreen></iframe>
+      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" frameborder="0" allowfullscreen title="Featured video: Nyel Gaming gameplay"></iframe>
     </div>
   </section>
 
-  <section id="loadouts" class="section">
+  <section id="loadouts" class="section" tabindex="-1">
     <h3>Top CODM Loadouts</h3>
     <div class="card">
       <ul>
@@ -177,7 +403,7 @@
     </div>
   </section>
 
-  <section id="achievements" class="section">
+  <section id="achievements" class="section" tabindex="-1">
     <h3>Achievements</h3>
     <div class="card">
       <ul>
@@ -189,29 +415,7 @@
     </div>
   </section>
 
-  <!-- Trophy Cabinet Section -->
-  <section id="trophies" class="section">
-    <h3>Trophy Cabinet</h3>
-    <div class="gallery" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px;">
-      <div class="card" style="text-align:center; padding:15px;">
-        <img src="https://img.icons8.com/ios-filled/100/00ffcc/trophy.png" alt="Legendary Rank Trophy" style="width:60px; margin-bottom:10px;">
-        <h4>Legendary Rank</h4>
-        <p>6x MP Legendary & 13x BR Legendary</p>
-      </div>
-      <div class="card" style="text-align:center; padding:15px;">
-        <img src="https://img.icons8.com/ios-filled/100/00ffcc/sniper-rifle.png" alt="Master Sniper" style="width:60px; margin-bottom:10px;">
-        <h4>Master Sniper</h4>
-        <p>Precision one-shot kills</p>
-      </div>
-      <div class="card" style="text-align:center; padding:15px;">
-        <img src="https://img.icons8.com/ios-filled/100/00ffcc/trophy--v1.png" alt="Tournament Participant" style="width:60px; margin-bottom:10px;">
-        <h4>Local Tournaments</h4>
-        <p>PH Ranked Clans & events</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="section">
+  <section id="gallery" class="section" tabindex="-1">
     <h3>Gallery</h3>
     <div class="gallery">
       <img src="https://i.imgur.com/ILXbDgA.jpg" alt="Sample Killfeed">
@@ -220,101 +424,5 @@
     </div>
   </section>
 
-  <section id="schedule" class="section">
-    <h3>Streaming Schedule</h3>
-    <div class="card">
-      <ul>
-        <li><strong>Monday – Friday:</strong> 7:00 PM – 10:00 PM</li>
-        <li><strong>Saturday:</strong> 2:00 PM – 5:00 PM</li>
-        <li><strong>Sunday:</strong> Rest day or surprise streams</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="tips" class="section">
-    <h3>Tips Coming Soon!</h3>
-    <div class="card">
-      <ul>
-        <li>🎯 Slide Cancel Like a Pro</li>
-        <li>🎯 How to Master Sniping & Movement</li>
-        <li>🎯 Secret Movements to Outsmart Enemies</li>
-        <li>🎯 Fast Track to Legendary Rank</li>
-      </ul>
-      <p>Stay tuned. These guides will be dropping soon!</p>
-    </div>
-  </section>
-
-  <section id="socials" class="section socials">
-    <h3>Follow Me</h3>
-    <p>
-      <a href="https://www.facebook.com/profile.php?id=100063801975179" target="_blank">Facebook</a> |
-      <a href="https://www.youtube.com/@microvelvet3303" target="_blank">YouTube</a> |
-      <a href="mailto:lanielveluz23@gmail.com">Email Me</a>
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 Nyel Gaming. Built with 💻 and 🔥 by Gab.
-  </footer>
-
-  <!-- Blog Section -->
-  <section id="blog" class="section">
-    <h3>Latest Blog Posts</h3>
-    <div class="card">
-      <h4>🎯 How I Sniped My Way to Legendary</h4>
-      <p>Learn the mindset and mechanics that helped me dominate with sniper rifles in ranked MP and BR matches. Tips on positioning, reflex training, and sensitivity settings inside!</p>
-      <a href="#">Read more...</a>
-    </div>
-    <div class="card">
-      <h4>🎮 My 4-Finger Claw Setup</h4>
-      <p>Playing claw-style on mobile gives better control. I share my layout, grip, and practice routine to help you transition and improve.</p>
-      <a href="#">Read more...</a>
-    </div>
-  </section>
-
-  <!-- Leaderboard Section -->
-  <section id="leaderboard" class="section">
-    <h3>Top Community Players</h3>
-    <div class="card">
-      <table style="width:100%; color: var(--text-color); border-collapse: collapse;">
-        <thead>
-          <tr style="background-color: var(--accent-color); color: var(--bg-color);">
-            <th style="padding: 10px;">Rank</th>
-            <th>Player</th>
-            <th>Mode</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding: 10px;">1</td><td>Nyel</td><td>MP</td><td>5200</td></tr>
-          <tr><td style="padding: 10px;">2</td><td>GhostPH</td><td>BR</td><td>4980</td></tr>
-          <tr><td style="padding: 10px;">3</td><td>KiloSniper</td><td>MP</td><td>4735</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <h3>Contact Me</h3>
-    <div class="card">
-      <form action="mailto:lanielveluz23@gmail.com" method="POST" enctype="text/plain">
-        <label>Name:</label><br />
-        <input type="text" name="name" style="width:100%; padding:8px; margin-bottom:10px;"><br />
-        <label>Email:</label><br />
-        <input type="email" name="email" style="width:100%; padding:8px; margin-bottom:10px;"><br />
-        <label>Message:</label><br />
-        <textarea name="message" rows="5" style="width:100%; padding:8px;"></textarea><br />
-        <br />
-        <input type="submit" value="Send" class="toggle-btn">
-      </form>
-    </div>
-  </section>
-
-  <script>
-    function toggleMode() {
-      document.body.classList.toggle("light-mode");
-    }
-  </script>
-</body>
-</html>
+  <section id="schedule" class="section" tabindex="-1">
+    <h3>Streaming Schedule</
