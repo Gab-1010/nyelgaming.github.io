@@ -26,6 +26,7 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
     header {
       background-color: #1a1a1a;
@@ -45,10 +46,6 @@
       color: var(--accent-color);
       margin: 0 15px;
       text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #fff;
     }
     .toggle-btn {
       background: var(--accent-color);
@@ -58,10 +55,6 @@
       cursor: pointer;
       font-weight: bold;
       margin-top: 10px;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .toggle-btn:hover {
-      transform: scale(1.05);
     }
     .hero {
       position: relative;
@@ -71,7 +64,6 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      animation: fadeIn 1.5s ease-in-out;
     }
     .hero::before {
       content: "";
@@ -83,6 +75,7 @@
       position: relative;
       z-index: 2;
       color: #fff;
+      animation: fadeInUp 1s ease-in-out;
     }
     .hero h2 {
       font-size: 3rem;
@@ -92,11 +85,14 @@
     .hero p {
       font-size: 1.2rem;
     }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .section {
       padding: 40px 20px;
       max-width: 900px;
       margin: auto;
-      animation: fadeInUp 1s ease-out;
     }
     .section h3 {
       color: var(--accent-color);
@@ -112,10 +108,10 @@
       border-radius: 10px;
       margin-bottom: 20px;
       box-shadow: 0 0 10px rgba(0,255,204,0.1);
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: scale(1.02);
     }
     .gallery {
       display: grid;
@@ -126,19 +122,11 @@
       width: 100%;
       border-radius: 10px;
       border: 2px solid var(--accent-color);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
     }
     .socials a {
       color: var(--accent-color);
       margin: 0 10px;
       text-decoration: none;
-      transition: color 0.3s;
-    }
-    .socials a:hover {
-      color: #fff;
     }
     footer {
       text-align: center;
@@ -147,37 +135,79 @@
       font-size: 0.9rem;
       color: #888;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
-  <!-- HTML content remains unchanged except for hero section background attachment and animations -->
+  <!-- HEADER -->
+  <header>
+    <h1>Nyel Gaming</h1>
+    <p>Your daily dose of clutch plays, CODM tips, and raw gaming energy.</p>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#videos">Videos</a>
+    <a href="#loadouts">Loadouts</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#tips">Tips</a>
+    <a href="#socials">Socials</a>
+    <a href="#team">Team</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Stream. Slay. Flex.</h2>
+      <p>Join Nyel in legendary CODM gameplay</p>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTIONS HERE... (about, videos, etc.) -->
+
+  <!-- TEAM SPOTLIGHT -->
+  <section id="team" class="section">
+    <h3>Team Spotlight</h3>
+    <div class="gallery">
+      <div class="card" style="text-align:center;">
+        <img src="https://i.imgur.com/0y0y0y0.png" alt="Team Captain" style="width:100px; border-radius:50%; border:2px solid var(--accent-color); margin-bottom:10px;">
+        <h4>Nyel</h4>
+        <p><strong>Team Captain</strong></p>
+        <p>Leader of the squad, tactical decision-maker, and sniper god.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <img src="https://i.imgur.com/A5bY0nO.png" alt="Sniper" style="width:100px; border-radius:50%; border:2px solid var(--accent-color); margin-bottom:10px;">
+        <h4>GhostPH</h4>
+        <p><strong>Sniper Specialist</strong></p>
+        <p>Deadly accurate with DLQ33. Covers the flank and supports the push.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <img src="https://i.imgur.com/bE6M3nC.png" alt="Rusher" style="width:100px; border-radius:50%; border:2px solid var(--accent-color); margin-bottom:10px;">
+        <h4>KiloSniper</h4>
+        <p><strong>Rusher</strong></p>
+        <p>Fast, fearless, and always first in. Breaches enemy lines like a beast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Nyel Gaming. Designed by Laniel Gabriel Veluz.
+  </footer>
 
   <script>
-    // Apply saved theme on load
-    window.onload = function () {
-      const savedMode = localStorage.getItem("theme");
-      if (savedMode === "light") {
-        document.body.classList.add("light-mode");
-      }
-    };
-
-    // Toggle theme and save preference
     function toggleMode() {
       document.body.classList.toggle("light-mode");
-      if (document.body.classList.contains("light-mode")) {
-        localStorage.setItem("theme", "light");
-      } else {
-        localStorage.setItem("theme", "dark");
+      localStorage.setItem('theme', document.body.classList.contains("light-mode") ? 'light' : 'dark');
+    }
+
+    // Load theme preference
+    window.onload = function() {
+      if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
       }
     }
   </script>
