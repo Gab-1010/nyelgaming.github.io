@@ -33,16 +33,31 @@
       text-decoration: none;
     }
     .hero {
+      position: relative;
       text-align: center;
-      padding: 60px 20px;
-      background-color: black;
+      padding: 100px 20px;
+      background-image: url('https://wallpaperaccess.com/full/1890197.jpg');
       background-size: cover;
       background-position: center;
       color: white;
     }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
     .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+    .hero p {
+      font-size: 1.2rem;
     }
     .section {
       padding: 40px 20px;
@@ -56,6 +71,13 @@
     .section ul {
       list-style-type: square;
       padding-left: 20px;
+    }
+    .card {
+      background-color: #1f1f1f;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,255,204,0.1);
     }
     .socials a {
       color: #00ffcc;
@@ -81,32 +103,63 @@
     <a href="#about">About</a>
     <a href="#videos">Videos</a>
     <a href="#loadouts">Loadouts</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#schedule">Schedule</a>
     <a href="#socials">Socials</a>
   </nav>
 
   <section class="hero">
-    <h2>Stream. Slay. Flex.</h2>
-    <p>Join the fight with Nyel on Call of Duty: Mobile</p>
+    <div class="hero-content">
+      <h2>Stream. Slay. Flex.</h2>
+      <p>Join Nyel in legendary CODM gameplay</p>
+    </div>
   </section>
 
   <section id="about" class="section">
     <h3>About Me</h3>
-    <p>I'm Nyel, a passionate Filipino gamer focused on CODM. I stream intense matches, share pro tips, and bring hype energy to every game. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
+    <div class="card">
+      <p>I'm Nyel, a passionate Filipino gamer focused on CODM. I stream intense matches, share pro tips, and bring hype energy to every game. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
+    </div>
   </section>
 
   <section id="videos" class="section">
     <h3>Featured Videos</h3>
-    <!-- Example embed -->
-    <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" title="he told me I was hacking. 😆" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="card">
+      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" title="he told me I was hacking. 😆" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </section>
 
   <section id="loadouts" class="section">
     <h3>Top CODM Loadouts</h3>
-    <ul>
-      <li><strong>AK-47:</strong> OWC Laser - Tactical, RTC Stock, 40-Round Mag</li>
-      <li><strong>Krig 6:</strong> Monolithic Suppressor, Red Dot Sight, Field Agent Grip</li>
-      <li><strong>DLQ33:</strong> MIP Light Barrel, Extended Mag A, FMJ</li>
-    </ul>
+    <div class="card">
+      <ul>
+        <li><strong>AK-47:</strong> OWC Laser - Tactical, RTC Stock, 40-Round Mag</li>
+        <li><strong>Krig 6:</strong> Monolithic Suppressor, Red Dot Sight, Field Agent Grip</li>
+        <li><strong>DLQ33:</strong> MIP Light Barrel, Extended Mag A, FMJ</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="achievements" class="section">
+    <h3>Achievements</h3>
+    <div class="card">
+      <ul>
+        <li>Reached Legendary Rank 5 Seasons in a Row</li>
+        <li>Top 1 MVP in 80% of Ranked Matches (2025)</li>
+        <li>Invited to CODM Local PH Invitational 2025</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="schedule" class="section">
+    <h3>Streaming Schedule</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Monday – Friday:</strong> 7:00 PM – 10:00 PM</li>
+        <li><strong>Saturday:</strong> 2:00 PM – 5:00 PM</li>
+        <li><strong>Sunday:</strong> Rest day or surprise streams</li>
+      </ul>
+    </div>
   </section>
 
   <section id="socials" class="section socials">
