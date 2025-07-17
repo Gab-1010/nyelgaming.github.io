@@ -2,17 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyel Gaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0f0f0f;
       --text-color: #ffffff;
       --accent-color: #00ffcc;
       --card-bg: #1f1f1f;
-      --btn-bg: #00ffcc;
-      --btn-text: #0f0f0f;
     }
 
     body.light-mode {
@@ -20,17 +18,6 @@
       --text-color: #000000;
       --accent-color: #007777;
       --card-bg: #f0f0f0;
-      --btn-bg: #007777;
-      --btn-text: #ffffff;
-    }
-    
-    /* Add this: */
-    body.light-mode header p {
-      color: white !important;
-    }
-
-    * {
-      box-sizing: border-box;
     }
 
     body {
@@ -39,106 +26,82 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
-      overflow-x: hidden;
     }
 
     header {
       background-color: #1a1a1a;
       padding: 20px;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: var(--accent-color);
-      letter-spacing: 2px;
-    }
-
-    header p {
-      margin: 5px 0 10px;
-      font-weight: 500;
-      font-size: 1.1rem;
-    }
-
-    .toggle-btn {
-      background: var(--btn-bg);
-      border: none;
-      color: var(--btn-text);
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: 700;
-      border-radius: 25px;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .toggle-btn:hover {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
     }
 
     nav {
       text-align: center;
-      margin: 25px 0 40px;
-      font-weight: 600;
+      margin: 20px 0;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
 
     nav a {
       color: var(--accent-color);
-      margin: 0 18px;
       text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: var(--btn-bg);
-      text-decoration: underline;
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: var(--accent-color);
+      cursor: pointer;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .toggle-btn {
+      background: var(--accent-color);
+      border: none;
+      color: var(--bg-color);
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
     }
 
     .hero {
       position: relative;
       text-align: center;
-      padding: 140px 20px 120px;
+      padding: 100px 20px;
       background-image: url('https://wallpaperaccess.com/full/6320617.jpg');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
-      overflow: hidden;
     }
 
     .hero::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 1;
-      pointer-events: none;
+      background: rgba(0, 0, 0, 0.6);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       color: #fff;
-      max-width: 700px;
-      margin: 0 auto;
     }
 
     .hero h2 {
       font-size: 3rem;
       margin-bottom: 10px;
-      color: #00ffcc; /* Always bright teal */
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      font-weight: 500;
-      letter-spacing: 1px;
+      color: var(--accent-color);
     }
 
     .section {
@@ -149,448 +112,141 @@
 
     .section h3 {
       color: var(--accent-color);
-      margin-bottom: 18px;
-      font-size: 2rem;
-      letter-spacing: 1px;
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 6px;
+      margin-bottom: 15px;
     }
 
     .card {
       background-color: var(--card-bg);
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 15px rgba(0,255,204,0.15);
-      line-height: 1.5;
-    }
-
-    ul {
-      list-style-type: square;
-      padding-left: 22px;
-      font-size: 1.1rem;
-    }
-
-    ul li {
-      margin-bottom: 8px;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,255,204,0.1);
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
     }
 
     .gallery img {
       width: 100%;
-      border-radius: 14px;
-      border: 3px solid var(--accent-color);
-      box-shadow: 0 4px 15px rgba(0,255,204,0.2);
-      transition: transform 0.3s ease;
-      cursor: pointer;
+      border-radius: 10px;
+      border: 2px solid var(--accent-color);
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-      border-color: #00ffcccc;
-      box-shadow: 0 8px 20px rgba(0,255,204,0.4);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      color: var(--text-color);
-    }
-
-    thead tr {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-    }
-
-    th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid var(--btn-bg);
-      text-align: center;
-    }
-
-    /* Socials links styling */
     .socials a {
       color: var(--accent-color);
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1.3rem;
-      transition: color 0.3s;
     }
 
-    .socials a:hover {
-      color: var(--btn-bg);
-      text-decoration: underline;
-    }
-
-    /* Blog post cards */
-    .blog-post {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 12px rgba(0,255,204,0.12);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .blog-post:hover {
-      box-shadow: 0 0 20px rgba(0,255,204,0.3);
-    }
-
-    .blog-post h4 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: var(--accent-color);
-    }
-
-    .blog-post p {
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
-    .blog-post a {
-      font-weight: 600;
-      color: var(--btn-bg);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .blog-post a:hover {
-      color: var(--accent-color);
-      text-decoration: underline;
-    }
-
-    /* Player Spotlight Cards */
-    .player-spotlight-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .player-card {
-      background-color: var(--card-bg);
-      border-radius: 14px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 0 15px rgba(0,255,204,0.15);
+    footer {
       text-align: center;
-      transition: transform 0.3s ease;
+      padding: 20px;
+      background-color: #1a1a1a;
+      font-size: 0.9rem;
+      color: #888;
     }
 
-    .player-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,255,204,0.4);
-    }
-
-    .player-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent-color);
-      margin-bottom: 15px;
-      box-shadow: 0 0 8px rgba(0,255,204,0.5);
-    }
-
-    .player-card h4 {
-      margin: 0 0 6px;
-      font-size: 1.4rem;
-      color: var(--accent-color);
-    }
-
-    .player-card p {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    /* Form Styles */
-    form label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 6px;
-      font-size: 1.05rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-size: 1rem;
-      transition: background-color 0.3s, color 0.3s;
-      box-shadow: inset 0 0 6px rgba(0,255,204,0.25);
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: 2px solid var(--accent-color);
-      background-color: var(--card-bg);
-    }
-
-    input[type="submit"] {
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border: none;
-      padding: 14px 28px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    input[type="submit"]:hover {
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
       background-color: var(--accent-color);
       color: var(--bg-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 10px rgba(0,255,204,0.3);
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 600px) {
-      nav a {
-        display: inline-block;
-        margin: 8px 10px;
-      }
-
-      .player-spotlight-container {
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
       }
     }
-
   </style>
 </head>
 <body>
   <header>
     <h1>Nyel Gaming</h1>
     <p>Your daily dose of clutch plays, CODM tips, and raw gaming energy.</p>
-    <button class="toggle-btn" id="modeToggle">Toggle Dark/Light Mode</button>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
   </header>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#videos">Videos</a>
-    <a href="#loadouts">Loadouts</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#schedule">Schedule</a>
-    <a href="#tips">Tips</a>
-    <a href="#socials">Socials</a>
-    <a href="#blog">Blog</a>
-    <a href="#spotlight">Spotlight</a>
-    <a href="#merch">Merch</a>
-    <a href="#contact">Contact</a>
+    <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#videos">Videos</a>
+      <a href="#loadouts">Loadouts</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#tips">Tips</a>
+      <a href="#socials">Socials</a>
+      <a href="#blog">Blog</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
 
-  <section class="hero" id="hero">
+  <section class="hero">
     <div class="hero-content">
       <h2>Stream. Slay. Flex.</h2>
       <p>Join Nyel in legendary CODM gameplay</p>
     </div>
   </section>
 
+  <!-- Example Section: About -->
   <section id="about" class="section">
-    <h3>About Me</h3>
+    <h3>About Nyel</h3>
     <div class="card">
-      <p>I'm Nyel, a passionate Filipino gamer and sniper main in Call of Duty: Mobile. I've hit Legendary in MP 6 times and BR 13 times! I play using 4 fingers for better agility and accuracy — especially with sniping. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
+      <p>Hi! I’m Nyel, a passionate Call of Duty: Mobile player streaming daily clutch plays, loadouts, and tutorials to help you rank up fast and stay on top of your game.</p>
     </div>
   </section>
 
-  <section id="videos" class="section">
-    <h3>Featured Videos</h3>
-    <div class="card">
-      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <section id="loadouts" class="section">
-    <h3>Top CODM Loadouts</h3>
-    <div class="card">
-      <ul>
-        <li><strong>AK-47:</strong> OWC Laser - Tactical, RTC Stock, 40-Round Mag</li>
-        <li><strong>Krig 6:</strong> Monolithic Suppressor, Red Dot Sight, Field Agent Grip</li>
-        <li><strong>DLQ33:</strong> MIP Light Barrel, Extended Mag A, FMJ</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="achievements" class="section">
-    <h3>Achievements</h3>
-    <div class="card">
-      <ul>
-        <li>6x MP Legendary (2023–2025)</li>
-        <li>13x BR Legendary</li>
-        <li>Master Sniper – Known for precision one-shot kills</li>
-        <li>Participated in PH Ranked Clans and Local Tournaments</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="gallery" class="section">
-    <h3>Gallery</h3>
-    <div class="gallery">
-      <img src="https://gab-1010.github.io/nyelgaming.github.io/codhome" alt="My Collection" />
-      <img src="https://gab-1010.github.io/nyelgaming.github.io/best sniper gold diamond.jpg" alt="Sniper Loadout" />
-      <img src="https://gab-1010.github.io/nyelgaming.github.io/collection.jpg" alt="Myhthic Guns Collection" />
-    </div>
-  </section>
-
-  <section id="schedule" class="section">
-    <h3>Streaming Schedule</h3>
-    <div class="card">
-      <ul>
-        <li><strong>Monday – Friday:</strong> 7:00 PM – 10:00 PM</li>
-        <li><strong>Saturday:</strong> 2:00 PM – 5:00 PM</li>
-        <li><strong>Sunday:</strong> Rest day or surprise streams</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="tips" class="section">
-    <h3>Tips & Tricks</h3>
-    <div class="card">
-      <ul>
-        <li>🎯 Slide Cancel Like a Pro</li>
-        <li>🎯 How to Master Sniping & Movement</li>
-        <li>🎯 Secret Movements to Outsmart Enemies</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="socials" class="section socials">
-    <h3>Connect with Me</h3>
-    <div class="card" style="text-align:center;">
-      <a href="https://www.facebook.com/NyelGaming" target="_blank" rel="noopener">Facebook</a> | 
-      <a href="https://www.twitch.tv/nyelgaming" target="_blank" rel="noopener">Twitch</a> | 
-      <a href="https://www.youtube.com/c/NyelGaming" target="_blank" rel="noopener">YouTube</a>
-    </div>
-  </section>
-
-  <section id="blog" class="section">
-    <h3>Latest Blog Posts</h3>
-    <div class="blog-post">
-      <h4>Mastering Slide Cancel - My Personal Guide</h4>
-      <p>Slide canceling can give you the edge in fast-paced CODM battles. Here's how I perfected it.</p>
-      <a href="#">Read More</a>
-    </div>
-    <div class="blog-post">
-      <h4>Sniper Loadouts for Every Map</h4>
-      <p>Discover the best sniper setups to dominate both close and long-range maps.</p>
-      <a href="#">Read More</a>
-    </div>
-    <div class="blog-post">
-      <h4>Staying Calm in Clutch Moments</h4>
-      <p>Tips on maintaining your cool when the pressure’s on to win that match.</p>
-      <a href="#">Read More</a>
-    </div>
-  </section>
-
-  <section id="spotlight" class="section">
-    <h3>Player Spotlight</h3>
-    <div class="player-spotlight-container">
-      <div class="player-card">
-        <img src="https://i.pravatar.cc/150?img=20" alt="Player Jessa" />
-        <h4>Jessa “Ace” Cruz</h4>
-        <p>Top Strategist and Team Captain</p>
-      </div>
-      <div class="player-card">
-        <img src="https://i.pravatar.cc/150?img=15" alt="Player Kai" />
-        <h4>Kai “Blaze” Mendoza</h4>
-        <p>Sharp Shooter and Tactician</p>
-      </div>
-      <div class="player-card">
-        <img src="https://i.pravatar.cc/150?img=12" alt="Player Miguel" />
-        <h4>Miguel “Storm” Diaz</h4>
-        <p>Expert Support and Communication</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="merch" class="section">
-    <h3>Merch Coming Soon</h3>
-    <div class="card" style="text-align:center;">
-      <p>Stay tuned for exclusive Nyel Gaming gear & apparel! T-shirts, hoodies, and more.</p>
-      <p><em>Merch store launching soon...</em></p>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <h3>Contact Me</h3>
-    <div class="card">
-      <form id="contactForm">
-        <label for="name">Name *</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required />
-
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
-
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-        <input type="submit" value="Send Message" />
-      </form>
-    </div>
-  </section>
-
-  <footer style="text-align:center; padding: 25px 10px; color: var(--accent-color); font-weight: 600;">
-    &copy; 2025 Nyel Gaming | Designed by Laniel Gabriel Veluz
+  <footer>
+    &copy; 2025 Nyel Gaming. Built with 💻 and 🔥 by Gab.
   </footer>
 
-  <script>
-    // Dark/Light mode toggle with persistence
-    const toggleBtn = document.getElementById('modeToggle');
-    const body = document.body;
+  <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
-    function setMode(mode) {
-      if (mode === 'light') {
-        body.classList.add('light-mode');
-      } else {
-        body.classList.remove('light-mode');
-      }
-      localStorage.setItem('nyelMode', mode);
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("light-mode");
     }
 
-    toggleBtn.addEventListener('click', () => {
-      const currentMode = body.classList.contains('light-mode') ? 'light' : 'dark';
-      if (currentMode === 'dark') {
-        setMode('light');
-      } else {
-        setMode('dark');
-      }
-    });
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      links.classList.toggle('show');
+    }
 
-    // On page load, apply saved mode or default to dark
-    window.onload = () => {
-      const savedMode = localStorage.getItem('nyelMode') || 'dark';
-      setMode(savedMode);
+    window.onscroll = function () {
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
     };
 
-    // Simple parallax effect on hero background
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY;
-      const hero = document.getElementById('hero');
-      hero.style.backgroundPositionY = ${scrollPos * 0.5}px;
-    });
-
-    // Basic form submission handler
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you for your message! I will get back to you soon.');
-      form.reset();
-    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
