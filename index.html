@@ -7,11 +7,26 @@
   <title>Nyel Gaming</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --text-color: #ffffff;
+      --accent-color: #00ffcc;
+      --card-bg: #1f1f1f;
+    }
+
+    body.light-mode {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --accent-color: #007777;
+      --card-bg: #f0f0f0;
+    }
+
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
       background-color: #1a1a1a;
@@ -21,25 +36,33 @@
     header h1 {
       margin: 0;
       font-size: 2.5rem;
-      color: #00ffcc;
+      color: var(--accent-color);
     }
     nav {
       text-align: center;
       margin: 20px 0;
     }
     nav a {
-      color: #00ffcc;
+      color: var(--accent-color);
       margin: 0 15px;
       text-decoration: none;
+    }
+    .toggle-btn {
+      background: var(--accent-color);
+      border: none;
+      color: var(--bg-color);
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
     }
     .hero {
       position: relative;
       text-align: center;
       padding: 100px 20px;
-      background-image: url('https://wallpaperaccess.com/full/6320617.jpg');
+      background-image: url('https://wallpaperaccess.com/full/1890197.jpg');
       background-size: cover;
       background-position: center;
-      color: white;
     }
     .hero::before {
       content: "";
@@ -50,11 +73,12 @@
     .hero-content {
       position: relative;
       z-index: 2;
+      color: #fff;
     }
     .hero h2 {
       font-size: 3rem;
       margin-bottom: 10px;
-      color: #00ffcc;
+      color: var(--accent-color);
     }
     .hero p {
       font-size: 1.2rem;
@@ -65,7 +89,7 @@
       margin: auto;
     }
     .section h3 {
-      color: #00ffcc;
+      color: var(--accent-color);
       margin-bottom: 15px;
     }
     .section ul {
@@ -73,14 +97,24 @@
       padding-left: 20px;
     }
     .card {
-      background-color: #1f1f1f;
+      background-color: var(--card-bg);
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
       box-shadow: 0 0 10px rgba(0,255,204,0.1);
     }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid var(--accent-color);
+    }
     .socials a {
-      color: #00ffcc;
+      color: var(--accent-color);
       margin: 0 10px;
       text-decoration: none;
     }
@@ -97,6 +131,7 @@
   <header>
     <h1>Nyel Gaming</h1>
     <p>Your daily dose of clutch plays, CODM tips, and raw gaming energy.</p>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
   </header>
 
   <nav>
@@ -104,7 +139,9 @@
     <a href="#videos">Videos</a>
     <a href="#loadouts">Loadouts</a>
     <a href="#achievements">Achievements</a>
+    <a href="#gallery">Gallery</a>
     <a href="#schedule">Schedule</a>
+    <a href="#tips">Tips</a>
     <a href="#socials">Socials</a>
   </nav>
 
@@ -118,14 +155,14 @@
   <section id="about" class="section">
     <h3>About Me</h3>
     <div class="card">
-      <p>I'm Nyel, a passionate Filipino gamer focused on CODM. I stream intense matches, share pro tips, and bring hype energy to every game. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
+      <p>I'm Nyel, a passionate Filipino gamer and sniper main in Call of Duty: Mobile. I've hit Legendary in MP 6 times and BR 13 times! I play using 4 fingers for better agility and accuracy — especially with sniping. Whether you're here to learn, laugh, or squad up — welcome to the team!</p>
     </div>
   </section>
 
   <section id="videos" class="section">
     <h3>Featured Videos</h3>
     <div class="card">
-      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" title="he told me I was hacking. 😆" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="100%" height="468" src="https://www.youtube.com/embed/ol4tC83zAsQ" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
@@ -144,10 +181,20 @@
     <h3>Achievements</h3>
     <div class="card">
       <ul>
-        <li>Reached Legendary Rank 5 Seasons in a Row</li>
-        <li>Top 1 MVP in 80% of Ranked Matches (2025)</li>
-        <li>Invited to CODM Local PH Invitational 2025</li>
+        <li>6x MP Legendary (2023–2025)</li>
+        <li>13x BR Legendary</li>
+        <li>Master Sniper – Known for precision one-shot kills</li>
+        <li>Participated in PH Ranked Clans and Local Tournaments</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <h3>Gallery</h3>
+    <div class="gallery">
+      <img src="https://i.imgur.com/ILXbDgA.jpg" alt="Sample Killfeed">
+      <img src="https://i.imgur.com/2pX5KwO.jpg" alt="Sniper Loadout">
+      <img src="https://i.imgur.com/3MupkpB.jpg" alt="Gameplay Highlights">
     </div>
   </section>
 
@@ -159,6 +206,19 @@
         <li><strong>Saturday:</strong> 2:00 PM – 5:00 PM</li>
         <li><strong>Sunday:</strong> Rest day or surprise streams</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="tips" class="section">
+    <h3>Tips Coming Soon!</h3>
+    <div class="card">
+      <ul>
+        <li>🎯 Slide Cancel Like a Pro</li>
+        <li>🎯 How to Master Sniping & Movement</li>
+        <li>🎯 Secret Movements to Outsmart Enemies</li>
+        <li>🎯 Fast Track to Legendary Rank</li>
+      </ul>
+      <p>Stay tuned. These guides will be dropping soon!</p>
     </div>
   </section>
 
@@ -174,5 +234,11 @@
   <footer>
     &copy; 2025 Nyel Gaming. Built with 💻 and 🔥 by Gab.
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("light-mode");
+    }
+  </script>
 </body>
 </html>
